@@ -2,15 +2,52 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>IdentityV スポーン位置覚えくん</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IdentityV スポーン位置覚え丸</title>
     <link rel="stylesheet" type="text/css" href="https://yarnpkg.com/en/package/normalize.css">
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-    test;w
- 
-    <div id="main"></div>
-    <div id="setting"></div>
+    <div id="main">
+        <div id="map0" class="mapfield">
+            <div id="map0_answer"></div>
+            <img src="img/0.png" > 
+        </div>
+        <div id="map1" class="mapfield">
+            <div id="map0_answer"></div>
+            <img src="img/1.png" alt="">
+        </div>
+        <div id="map2" class="mapfield">
+            <div id="map0_answer"></div>
+            <img src="img/2.png" alt="">
+        </div>
+        <div id="map3" class="mapfield">
+            <div id="map0_answer"></div>
+            <img src="img/3.png" alt="">
+        </div>
+        <div id="map4" class="mapfield">
+            <div id="map0_answer"></div>
+            <img src="img/4.png" alt="">
+        </div>
+    </div>
+
+    <div id="setting">
+        <label for="map">マップ選択</label>
+        <select id="map" name="">
+            <option value="0">軍需工場</option>
+            <option value="1">赤の教会</option>
+            <option value="2">聖心病院</option>
+            <option value="3">湖景村</option>
+            <option value="4">月の河公園</option>
+        </select>
+
+        <label for="time">制限時間</label>
+        <select id="time" name="">
+            <option value="5">5秒</option>
+            <option value="10">10秒</option>
+            <option value="15">15秒</option>
+        </select>
+    </div>
 </body>
 <script src="main.js"></script>
 </html>
