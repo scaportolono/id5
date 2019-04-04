@@ -1,0 +1,60 @@
+{
+  "maps": [
+    {
+      "id": 0,
+      "img": "img/0.png",
+      "patterns": [
+        {
+          "type": "a",
+          "hunter": {
+            "x": 0,
+            "y": 2
+          },
+          "survivors": [
+            {
+              "x": 0,
+              "y": 2
+            },
+            {
+              "x": 0,
+              "y": 2
+            },
+            {
+              "x": 0,
+              "y": 2
+            },
+            {
+              "x": 0,
+              "y": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "img": "img/1.png",
+      "patterns": [
+      ]
+    },
+    {
+      "id": 2,
+      "img": "img/2.png",
+      "patterns": [
+      ]
+    },
+    {
+      "id": 3,
+      "img": "img/3.png",
+      "patterns": [
+      ]
+    },
+    {
+      "id": 4,
+      "img": "img/4.png",
+      "patterns": [
+      ]
+    }
+  ]
+}
+
