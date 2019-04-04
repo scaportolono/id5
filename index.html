@@ -8,28 +8,6 @@
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-    <div id="main">
-        <div id="map0" class="mapfield">
-            <div id="map0_answer"></div>
-            <img src="img/0.png" > 
-        </div>
-        <div id="map1" class="mapfield">
-            <div id="map0_answer"></div>
-            <img src="img/1.png" alt="">
-        </div>
-        <div id="map2" class="mapfield">
-            <div id="map0_answer"></div>
-            <img src="img/2.png" alt="">
-        </div>
-        <div id="map3" class="mapfield">
-            <div id="map0_answer"></div>
-            <img src="img/3.png" alt="">
-        </div>
-        <div id="map4" class="mapfield">
-            <div id="map0_answer"></div>
-            <img src="img/4.png" alt="">
-        </div>
-    </div>
 
     <div id="setting">
         <label for="map">マップ選択</label>
@@ -48,6 +26,48 @@
             <option value="15">15秒</option>
         </select>
     </div>
+
+    <div id="counter"></div>
+
+    <div id="main">
+        <div id="map0" class="mapfield">
+            <img src="img/0.png"> 
+            <div id="map0_answer" class="answer">
+                <i id="map0_answer_h" class="answer_h"></i>
+                <i id="map0_answer_s0" class="answer_s"></i>
+                <i id="map0_answer_s1" class="answer_s"></i>
+                <i id="map0_answer_s2" class="answer_s"></i>
+                <i id="map0_answer_s3" class="answer_s"></i>
+            </div>
+            <div id="map0_expected" class="expected">
+                <i id="map0_expected_h" class="expected_h"></i>
+                <i id="map0_expected_s0" class="expected_s"></i>
+                <i id="map0_expected_s1" class="expected_s"></i>
+                <i id="map0_expected_s2" class="expected_s"></i>
+                <i id="map0_expected_s3" class="expected_s"></i>
+            </div>
+        </div>
+
+        <!--
+        <div id="map1" class="mapfield">
+            <div id="map0_answer"></div>
+            <img src="img/1.png" alt="">
+        </div>
+        <div id="map2" class="mapfield">
+            <div id="map0_answer"></div>
+            <img src="img/2.png" alt="">
+        </div>
+        <div id="map3" class="mapfield">
+            <div id="map0_answer"></div>
+            <img src="img/3.png" alt="">
+        </div>
+        <div id="map4" class="mapfield">
+            <div id="map0_answer"></div>
+            <img src="img/4.png" alt="">
+        </div>
+        -->
+    </div>
+
 </body>
 <script src="main.js"></script>
 </html>

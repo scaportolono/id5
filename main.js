@@ -1,6 +1,5 @@
 
-let loadMapImage = () => {
-}
+
 
 
 // 以下データ
@@ -59,4 +58,3 @@ let data =  {
   ]
 }
 
-loadMapImage();
