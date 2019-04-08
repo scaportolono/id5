@@ -4,6 +4,7 @@ let current = {
     mapRect: {},
     clickCount: 0
 }
+let startBtn = document.querySelector("#start");
 // random
 
 // timelimit 
@@ -83,8 +84,9 @@ let start = () => {
     console.log("start...");
 
     // startボタンのdisabled
+    startBtn.disabled = "disabled"
     //
-    // ランダムの場合Mapをsetし直す
+    // Mapをsetし直す
     //
     // スポーンパターンのset 
         // expectedの描画（display;Noneのまま)
@@ -112,6 +114,10 @@ let end = () => {
     current.clickCount = 0;
     // カウントダウンが途中なら破棄
     // expectedをdisplay:blockに
+    
+    // startボタンのdisabled
+    startBtn.disabled = ""
+
     console.log("end...");
 }
 
@@ -119,7 +125,7 @@ let end = () => {
 window.onload = () => {
     // 工場初期表示
     setMap(0);
-    document.querySelector("#start").addEventListener("click", start);
+    startBtn.addEventListener("click", start);
 }
 
 console.info(data)
