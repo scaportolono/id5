@@ -9,16 +9,68 @@ body{
 #setting{
     padding: 8px;
 }
+
+/* counter */
+#counter {
+    width: 100%;
+    height: 5px;
+    margin: 40px auto;
+    background: #ddd;
+}
+#counter #timer{
+    width: 100%;
+    height: 5px;
+    margin: 0;
+    position: absolute;
+}
+#counter #timer.time5sec,
+#counter #timer.time10sec,
+#counter #timer.time15sec{
+    background: #17cddd;
+}
+#counter #timer.time5sec{
+    animation: fullexpand 5s ease-out;
+    -moz-animation: fullexpand 5s ease-out;
+    -webkit-animation: fullexpand 5s ease-out;
+}
+#counter #timer.time10sec{
+    animation: fullexpand 10s ease-out;
+    -moz-animation: fullexpand 10s ease-out;
+    -webkit-animation: fullexpand 10s ease-out;
+}
+#counter #timer.time15sec{
+    animation: fullexpand 15s ease-out;
+    -moz-animation: fullexpand 15s ease-out;
+    -webkit-animation: fullexpand 15s ease-out;
+}
+@keyframes fullexpand {
+    0% { width: 0px; }
+    100% { width: 100%; }
+}
+@-moz-keyframes fullexpand {
+    0% { width: 0px; }
+    100% { width: 100%; }
+}
+@-webkit-keyframes fullexpand {
+    0% { width: 0px; }
+    100% { width: 100%; }
+}
+
+/* main */
 #main{
     width: 100%;
     position: relative;
 }
 #main .mapfield{
+    display: block;
     width: 94%;
     position: absolute;
     margin: auto;
     left: 0;
     right: 0;
+}
+#main .mapfield.hidden{
+    display: none;
 }
 #main .mapfield .answer,
 #main .mapfield .expected{
@@ -51,7 +103,11 @@ body{
     background-color: rgba(255,0,0,0.5);
 }
 .answer_s{
+    display: none;
     background-color: rgba(255,255,0,0.5);
+}
+.answer_s.answerd{
+    display: block;
 }
 .expected_h{
     display:none;
