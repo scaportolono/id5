@@ -101,6 +101,9 @@ body{
 }
 .answer_h{
     background-color: rgba(255,0,0,0.5);
+    /* sample */
+    top: 50px;
+    left: 40px;
 }
 .answer_s{
     display: none;
