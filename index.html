@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>IdentityV スポーン位置覚え丸</title>
     <link rel="stylesheet" type="text/css" href="https://yarnpkg.com/en/package/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 
     <div id="setting">
         <label for="mapSelect">マップ選択</label>
-        <select id="mapSelect" name="">
+        <select id="mapSelect" name="" class="browser-default">
             <option value="0">軍需工場</option>
             <option value="1">赤の教会</option>
             <option value="2">聖心病院</option>
@@ -20,13 +23,13 @@
         </select>
 
         <label for="time">制限時間</label>
-        <select id="time" name="">
+        <select id="time" name="" class="browser-default">
             <option value="5">5秒</option>
             <option value="10">10秒</option>
             <option value="15">15秒</option>
         </select>
 
-        <button type="button" id="start">start</button>
+        <button type="button" id="start" class="waves-effect waves-light btn-large pink">start</button>
     </div>
 
     <div id="counter">

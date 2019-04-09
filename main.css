@@ -12,21 +12,22 @@ body{
 
 /* counter */
 #counter {
-    width: 100%;
-    height: 5px;
-    margin: 40px auto;
+    width: 94%;
+    height: 10px;
+    margin: 8px auto 0;
     background: #ddd;
+    position: relative;
 }
 #counter #timer{
     width: 100%;
-    height: 5px;
+    height: 10px;
     margin: 0;
     position: absolute;
 }
 #counter #timer.time5sec,
 #counter #timer.time10sec,
 #counter #timer.time15sec{
-    background: #17cddd;
+    background: #e91e63;
 }
 #counter #timer.time5sec{
     animation: fullexpand 5s ease-out;
