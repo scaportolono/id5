@@ -3,11 +3,12 @@ let current = {
     mapElem: {},
     mapID: 0,
     mapRect: {},
+    spawnPattern: 0,
     clickCount: 0
 }
 let startBtn = document.querySelector("#start");
 let counter = document.querySelector("#timer");
-// random
+let timer;
 
 // timelimit 
 let timelimit = (time) => {
@@ -60,6 +61,7 @@ mapSelect.onchange = () => {
        setMap(mapSelect.value);
     }
 }
+// map設定
 let setMap = (mapID) => {
     // すべてhidden&イベントの削除
     maps = document.querySelectorAll(".mapfield");
@@ -80,6 +82,25 @@ let setMap = (mapID) => {
     // currentMapの座標
     current.mapRect = current.mapElem.getBoundingClientRect();
 }
+// スポーンパターンのけってい
+let setRandomPattern = () => {
+    // current取得
+    mapID = current.mapID;
+    // jsonからpattern数取得
+    patterns = data.maps[mapID].patterns
+    // random
+    patternID = Math.floor(Math.random() * patterns.length);
+    current.spawnPattern = patterns[patternID] 
+
+    ptn = current.spawnPattern
+    // answer_hの座標設定
+    draw(document.getElementById("map" + current.mapID + "_answer_h"), ptn.hunter.x, ptn.hunter.y)
+
+    // expected_sの座標設定
+    for (i=0; i<4; i++){
+        draw(document.getElementById("map" + current.mapID + "_expected_s" + i), ptn.survivors[i].x, ptn.survivors[i].y)
+    }
+}
 
 // start
 let start = () => {
@@ -87,27 +108,24 @@ let start = () => {
 
     // startボタンのdisabled
     startBtn.disabled = "disabled"
-    //
+
+    // expected, answerdのリセット
+    current.mapElem.querySelector(".expected").style.display = "none"
+    
     // Mapをsetし直す
-    //
-    // スポーンパターンのset 
-        // expectedの描画（display;Noneのまま)
-        // answer_hunter描画
+    setRandomPattern();
 
     // カウントダウン開始
     // カウントダウンの値取得
     countTime = document.querySelector("#time").value
+    // settimeoutセット
+    timer = window.setTimeout(end, countTime * 1000)
     // CSSclassセット
     counter.classList.add("time" + countTime + "sec");
-    // settimeoutセット
-    // カウントダウン後にアクション
-    // 途中でカウントダウンを終了させる
 
     // 画像クリックでその位置に印をつける（4回まで)
     // -> answerの座標設定
     current.mapElem.addEventListener('click', mapClick)
-
-    // カウントダウンが終わるか、クリック数が４回終わるかで終了
 }
 
 // end
@@ -117,7 +135,10 @@ let end = () => {
     // クリックカウントのリセット
     current.clickCount = 0;
     // カウントダウンが途中なら破棄
+    window.clearTimeout(timer);
+
     // expectedをdisplay:blockに
+    current.mapElem.querySelector(".expected").style.display ="block" 
     
     // startボタンのdisabled
     startBtn.disabled = ""

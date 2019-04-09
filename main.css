@@ -30,19 +30,19 @@ body{
     background: #e91e63;
 }
 #counter #timer.time5sec{
-    animation: fullexpand 5s ease-out;
-    -moz-animation: fullexpand 5s ease-out;
-    -webkit-animation: fullexpand 5s ease-out;
+    animation: fullexpand 5s linear;
+    -moz-animation: fullexpand 5s linear;
+    -webkit-animation: fullexpand 5s linear;
 }
 #counter #timer.time10sec{
-    animation: fullexpand 10s ease-out;
-    -moz-animation: fullexpand 10s ease-out;
-    -webkit-animation: fullexpand 10s ease-out;
+    animation: fullexpand 10s linear;
+    -moz-animation: fullexpand 10s linear;
+    -webkit-animation: fullexpand 10s linear;
 }
 #counter #timer.time15sec{
-    animation: fullexpand 15s ease-out;
-    -moz-animation: fullexpand 15s ease-out;
-    -webkit-animation: fullexpand 15s ease-out;
+    animation: fullexpand 15s linear;
+    -moz-animation: fullexpand 15s linear;
+    -webkit-animation: fullexpand 15s linear;
 }
 @keyframes fullexpand {
     0% { width: 0px; }
