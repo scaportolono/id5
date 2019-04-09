@@ -1,3 +1,4 @@
+const mapCount = 6;
 let current = {
     mapElem: {},
     mapID: 0,
@@ -5,6 +6,7 @@ let current = {
     clickCount: 0
 }
 let startBtn = document.querySelector("#start");
+let counter = document.querySelector("#timer");
 // random
 
 // timelimit 
@@ -54,7 +56,7 @@ let mapClick = (e) => {
 const mapSelect = document.querySelector("#mapSelect");
 mapSelect.onchange = () => {
     // ランダム以外
-    if (mapSelect.value<5){
+    if (mapSelect.value<mapCount-1){
        setMap(mapSelect.value);
     }
 }
@@ -66,7 +68,7 @@ let setMap = (mapID) => {
         maps[i].removeEventListener("click", mapClick);
     }
     // 指定IDをshow&currentの設定
-    if (mapID<5){
+    if (mapID<mapCount-1){
         maps[mapID].classList.remove("hidden");
         current.mapElem = maps[mapID];
         current.mapID = mapID;
@@ -94,7 +96,9 @@ let start = () => {
 
     // カウントダウン開始
     // カウントダウンの値取得
+    countTime = document.querySelector("#time").value
     // CSSclassセット
+    counter.classList.add("time" + countTime + "sec");
     // settimeoutセット
     // カウントダウン後にアクション
     // 途中でカウントダウンを終了させる
@@ -117,6 +121,7 @@ let end = () => {
     
     // startボタンのdisabled
     startBtn.disabled = ""
+    counter.classList.remove();
 
     console.log("end...");
 }
