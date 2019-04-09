@@ -7,31 +7,38 @@
     <link rel="stylesheet" type="text/css" href="https://yarnpkg.com/en/package/normalize.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 
-    <div id="setting">
-        <label for="mapSelect">マップ選択</label>
-        <select id="mapSelect" name="" class="browser-default">
-            <option value="0">軍需工場</option>
-            <option value="1">赤の教会</option>
-            <option value="2">聖心病院</option>
-            <option value="3">湖景村</option>
-            <option value="4">月の河公園</option>
-        </select>
+    <div id="setting" class="row">
+        <div class="col s5 m5 l5">
+            <label for="mapSelect">マップ選択</label>
+            <select id="mapSelect" name="" class="browser-default">
+                <option value="0">軍需工場</option>
+                <option value="1">赤の教会</option>
+                <option value="2">聖心病院</option>
+                <option value="3">湖景村</option>
+                <option value="4">月の河公園</option>
+            </select>
+        </div>
 
-        <label for="time">制限時間</label>
-        <select id="time" name="" class="browser-default">
-            <option value="5">5秒</option>
-            <option value="10">10秒</option>
-            <option value="15">15秒</option>
-        </select>
+        <div class="col s5 m5 l5">
+            <label for="time">制限時間</label>
+            <select id="time" name="" class="browser-default">
+                <option value="5">5秒</option>
+                <option value="10">10秒</option>
+                <option value="15">15秒</option>
+            </select>
+        </div>
 
-
-        <button type="button" id="start" class="waves-effect waves-light btn-large pink">start</button>
+        <div class="col s2 m2 l2">
+            <button type="button" id="start" class="btn-floating btn-large waves-effect waves-light pink"><i class="material-icons">play_arrow</i></button>
+        </div>
     </div>
+
 
     <div id="counter">
         <div id="timer" class=""></div>
