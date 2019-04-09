@@ -8,11 +8,9 @@ let current = {
 }
 let startBtn = document.querySelector("#start");
 let counter = document.querySelector("#timer");
+let countTimeSet = document.querySelector("#time")
+let countTime = document.querySelector("#time").value
 let timer;
-
-// timelimit 
-let timelimit = (time) => {
-}
 
 // マップ画像の縮小比率
 let ratio = () => {
@@ -57,12 +55,23 @@ let mapClick = (e) => {
 const mapSelect = document.querySelector("#mapSelect");
 mapSelect.onchange = () => {
     // ランダム以外
-    if (mapSelect.value<mapCount-1){
-       setMap(mapSelect.value);
+    if (mapSelect.value<mapCount){
+        setMap(mapSelect.value);
+    } else {
+        setRandomMap();
     }
+}
+// randomMap
+let setRandomMap = () => {
+    randMapID = Math.floor(Math.random() * mapCount);
+    console.log(randMapID)
+    setMap(randMapID);
 }
 // map設定
 let setMap = (mapID) => {
+    // reset expected
+    resetExpected();
+    resetAnswerd();
     // すべてhidden&イベントの削除
     maps = document.querySelectorAll(".mapfield");
     for(i=0; i<maps.length; i++){
@@ -93,12 +102,32 @@ let setRandomPattern = () => {
     current.spawnPattern = patterns[patternID] 
 
     ptn = current.spawnPattern
+
     // answer_hの座標設定
-    draw(document.getElementById("map" + current.mapID + "_answer_h"), ptn.hunter.x, ptn.hunter.y)
+    draw(document.getElementById("map" + current.mapID + "_answer_h"), ptn.hunter.x, ptn.hunter.y);
 
     // expected_sの座標設定
     for (i=0; i<4; i++){
         draw(document.getElementById("map" + current.mapID + "_expected_s" + i), ptn.survivors[i].x, ptn.survivors[i].y)
+    }
+}
+
+// expectedのReset
+let resetExpected = () =>{
+    expectedElems = document.querySelectorAll(".expected");
+    for (i=0; i<expectedElems.length-1; i++) {
+        expectedElems[i].classList.add("hidden");
+    }
+    expSpawn = document.querySelectorAll(".expected_s");
+    for (i=0; i<expSpawn.length-1; i++) {
+        expSpawn[i].classList.remove("answerd");
+    }
+}
+// answerdのReset
+let resetAnswerd = () => {
+    ansSpawn = document.querySelectorAll(".answer_s");
+    for (i=0; i<ansSpawn.length-1; i++) {
+        ansSpawn[i].classList.remove("answerd");
     }
 }
 
@@ -108,23 +137,26 @@ let start = () => {
 
     // startボタンのdisabled
     startBtn.disabled = "disabled"
+    mapSelect.disabled = "disabled"
+    countTimeSet.disabled = "disabled"
 
     // expected, answerdのリセット
-    current.mapElem.querySelector(".expected").style.display = "none"
+    resetExpected();
+    resetAnswerd();
     
     // Mapをsetし直す
+    if (mapSelect.value==mapCount){
+        setRandomMap();
+    }
     setRandomPattern();
 
     // カウントダウン開始
-    // カウントダウンの値取得
-    countTime = document.querySelector("#time").value
     // settimeoutセット
     timer = window.setTimeout(end, countTime * 1000)
     // CSSclassセット
     counter.classList.add("time" + countTime + "sec");
 
     // 画像クリックでその位置に印をつける（4回まで)
-    // -> answerの座標設定
     current.mapElem.addEventListener('click', mapClick)
 }
 
@@ -136,13 +168,15 @@ let end = () => {
     current.clickCount = 0;
     // カウントダウンが途中なら破棄
     window.clearTimeout(timer);
+    counter.classList.remove("time" + countTime + "sec");
 
     // expectedをdisplay:blockに
-    current.mapElem.querySelector(".expected").style.display ="block" 
+    current.mapElem.querySelector(".expected").classList.remove("hidden");
     
     // startボタンのdisabled
     startBtn.disabled = ""
-    counter.classList.remove();
+    mapSelect.disabled = ""
+    countTimeSet.disabled = ""
 
     console.log("end...");
 }
@@ -153,5 +187,3 @@ window.onload = () => {
     setMap(0);
     startBtn.addEventListener("click", start);
 }
-
-console.info(data)

@@ -85,6 +85,8 @@ body{
 }
 #main .mapfield .expected{
     z-index: 99;
+}
+#main .mapfield .expected.hidden{
     display: none;
 }
 
@@ -100,15 +102,14 @@ body{
     position: absolute;
 }
 .answer_h{
+    display: none;
     background-color: rgba(255,0,0,0.5);
-    /* sample */
-    top: 50px;
-    left: 40px;
 }
 .answer_s{
     display: none;
     background-color: rgba(255,255,0,0.5);
 }
+.answer_h.answerd,
 .answer_s.answerd{
     display: block;
 }
