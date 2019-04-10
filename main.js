@@ -14,12 +14,9 @@ let timer;
 
 // マップ画像の縮小比率
 let ratio = () => {
-// 比率
-/* 
-	画像オリジナルサイズを取得（json）
-  表示サイズを取得
-  比率を出す
-*/
+    originImageWidth = data.maps[current.mapID].origin.x;
+    viewImageWidth = current.mapElem.querySelector("img").offsetWidth;
+    return viewImageWidth/originImageWidth
 }
 
 // 画像上のスポーン座標
@@ -102,13 +99,14 @@ let setRandomPattern = () => {
     current.spawnPattern = patterns[patternID] 
 
     ptn = current.spawnPattern
+    mapRatio = ratio();
 
     // answer_hの座標設定
-    draw(document.getElementById("map" + current.mapID + "_answer_h"), ptn.hunter.x, ptn.hunter.y);
+    draw(document.getElementById("map" + current.mapID + "_answer_h"), ptn.hunter.x * mapRatio, ptn.hunter.y * mapRatio);
 
     // expected_sの座標設定
     for (i=0; i<4; i++){
-        draw(document.getElementById("map" + current.mapID + "_expected_s" + i), ptn.survivors[i].x, ptn.survivors[i].y)
+        draw(document.getElementById("map" + current.mapID + "_expected_s" + i), ptn.survivors[i].x * mapRatio, ptn.survivors[i].y * mapRatio)
     }
 }
 
