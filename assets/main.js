@@ -23,9 +23,9 @@ let ratio = () => {
 
 // 画像上のスポーン座標
 let spawn = (clickX, clickY) => {
-    rect = current.mapRect
-    positionX = rect.left + window.pageXOffset;
-    positionY = rect.top + window.pageYOffset;
+    var rect = current.mapRect
+    var positionX = rect.left + window.pageXOffset;
+    var positionY = rect.top + window.pageYOffset;
 
     return {
         x: clickX - positionX,
@@ -42,7 +42,7 @@ let draw = (elem,x,y) => {
 let mapClick = (e) => {
     // 座標とって返す
     let { x, y } = spawn(e.pageX, e.pageY)
-    count = current.clickCount
+    var count = current.clickCount
     draw(document.getElementById("map" + current.mapID + "_answer_s" + count), x, y)
     current.clickCount++;
     if (current.clickCount === 4) {
@@ -62,7 +62,7 @@ mapSelect.onchange = () => {
 }
 // randomMap
 let setRandomMap = () => {
-    randMapID = Math.floor(Math.random() * mapCount);
+    var randMapID = Math.floor(Math.random() * mapCount);
     setMap(randMapID);
 }
 // map設定
@@ -148,6 +148,7 @@ let start = () => {
     setRandomPattern();
 
     // カウントダウン開始
+    countTime = document.querySelector("#time").value
     // settimeoutセット
     timer = window.setTimeout(end, countTime * 1000)
     // CSSclassセット
