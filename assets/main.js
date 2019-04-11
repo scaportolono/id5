@@ -63,7 +63,6 @@ mapSelect.onchange = () => {
 // randomMap
 let setRandomMap = () => {
     randMapID = Math.floor(Math.random() * mapCount);
-    console.log(randMapID)
     setMap(randMapID);
 }
 // map設定
@@ -133,8 +132,6 @@ let resetAnswerd = () => {
 
 // start
 let start = () => {
-    console.log("start...");
-
     // startボタンのdisabled
     startBtn.disabled = "disabled"
     mapSelect.disabled = "disabled"
@@ -177,8 +174,6 @@ let end = () => {
     startBtn.disabled = ""
     mapSelect.disabled = ""
     countTimeSet.disabled = ""
-
-    console.log("end...");
 }
 
 // load(初期表示)
