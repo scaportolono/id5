@@ -10,67 +10,13 @@
     <script src="https://browser.sentry-cdn.com/5.0.7/bundle.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <div id="contents">
-
-        <div id="slide-out" class="sidenav blue-grey darken-3">
-            <div id="setting">
-                <ul>
-                    <li>
-                        <label for="player">プレイヤー</label>
-                        <select id="player" name="" class="browser-default">
-                            <option value="hunter">ハンター</option>
-                            <option value="survivor">サバイバー</option>
-                        </select>
-                    </li>
-                    <li>
-                        <label for="js-mapSelect">マップ</label>
-                        <select id="js-mapSelect" name="" class="browser-default">
-                            <option value="0">軍需工場</option>
-                            <option value="1">赤の教会</option>
-                            <option value="2">聖心病院</option>
-                            <option value="3">湖景村</option>
-                            <option value="4">月の河公園</option>
-                            <option value="5">レオの思い出</option>
-                            <option value="6">ランダム</option>
-                        </select>
-                    </li>
-                    <li>
-                        <label for="js-time">制限時間</label>
-                        <select id="js-time" name="" class="browser-default">
-                            <option value="5">5秒</option>
-                            <option value="10">10秒</option>
-                            <option value="15">15秒</option>
-                        </select>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox">
-                            <span>最寄りのカメラ表示（ハンターのみ・写真家）</span>
-                        </label>
-                    </li>
-                    <li>
-                        <label>
-                            <input type="checkbox">
-                            <span>他のサバイバー表示（サバイバーのみ・納棺師）</span>
-                        </label>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="collection">
-                <a href="howto.html" target="_blank" class="collection-item blue-grey darken-3">使い方</a>
-                <a href="https://twitter.com/mie_identityV" target="_blank" class="collection-item">Production by みえ吉@mie_identityV</a>
-            </div>
-
-        </div>
-
-        <div id="setting" class="row mbz">
+    <main>
+        <div class="action-panel row mbz">
             <div class="col s10 m10 l10">
-                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="small material-icons blue-grey-text lighten-3">settings</i></a>
+                <a href="#" data-target="slide-out" class="btn-floating btn-midium waves-effect waves-light blue-grey darken-3 sidenav-trigger"><i class="small material-icons">settings</i></a>
             </div>
 
-            <div class="col s2 m2 l2">
+            <div class="right-button col s2 m2 l2">
                 <button type="button" id="js-start" class="btn-floating btn-midium waves-effect waves-light pink"><i class="material-icons">play_arrow</i></button>
             </div>
         </div>
@@ -83,8 +29,7 @@
                 </div>
             </div>
         </div>
-
-        <div id="main" class="row">
+        <div id="map" class="row">
             <div id="map0" class="mapfield col s12 m12 l12">
                 <img src="img/0.png"> 
                 <div id="map0_answer" class="answer">
@@ -193,9 +138,61 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
+        <div id="slide-out" class="sidenav blue-grey darken-3">
+            <ul class="setting-menu">
+                <li>
+                    <label for="player" class="white-text">プレイヤー</label>
+                    <select id="player" name="" class="browser-default">
+                        <option value="hunter">ハンター</option>
+                        <option value="survivor">サバイバー</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="js-mapSelect" class="white-text">マップ</label>
+                    <select id="js-mapSelect" name="" class="browser-default">
+                        <option value="0">軍需工場</option>
+                        <option value="1">赤の教会</option>
+                        <option value="2">聖心病院</option>
+                        <option value="3">湖景村</option>
+                        <option value="4">月の河公園</option>
+                        <option value="5">レオの思い出</option>
+                        <option value="6">ランダム</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="js-time" class="white-text">制限時間</label>
+                    <select id="js-time" name="" class="browser-default">
+                        <option value="5">5秒</option>
+                        <option value="10">10秒</option>
+                        <option value="15">15秒</option>
+                    </select>
+                </li>
+                <li>
+                    <label class="white-text">
+                        <input type="checkbox" class="filled-in">
+                        <span>最寄りのカメラ表示</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="white-text">
+                        <input type="checkbox" class="filled-in">
+                        <span>他のサバイバー表示</span>
+                    </label>
+                </li>
+            </ul>
 
+            <ul class="footernav">
+                <li>
+                    <a href="howto.html" target="_blank" class="">使い方</a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/mie_identityV" target="_blank" class="">Production by @mie_identityV</a>
+                </li>
+            </div>
+
+        </div>
 
 </body>
 <script src="dist/bundle.js" defer></script>
