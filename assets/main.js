@@ -1,5 +1,6 @@
 import data from "./data.json";
 import css from './main.css';
+Sentry.init({ dsn: 'https://4a92773d45204e28973fc9d4ff1967d8@sentry.io/1438809' });
 const mapCount = 6;
 let current = {
     mapElem: {},
