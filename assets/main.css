@@ -21,28 +21,28 @@ body{
     background: #ddd;
     position: relative;
 }
-#counter #timer{
+#counter .timer{
     width: 100%;
     height: 10px;
     margin: 0;
     position: absolute;
 }
-#counter #timer.time5sec,
-#counter #timer.time10sec,
-#counter #timer.time15sec{
+#counter .timer.time5sec,
+#counter .timer.time10sec,
+#counter .timer.time15sec{
     background: #e91e63;
 }
-#counter #timer.time5sec{
+#counter .timer.time5sec{
     animation: fullexpand 5s linear;
     -moz-animation: fullexpand 5s linear;
     -webkit-animation: fullexpand 5s linear;
 }
-#counter #timer.time10sec{
+#counter .timer.time10sec{
     animation: fullexpand 10s linear;
     -moz-animation: fullexpand 10s linear;
     -webkit-animation: fullexpand 10s linear;
 }
-#counter #timer.time15sec{
+#counter .timer.time15sec{
     animation: fullexpand 15s linear;
     -moz-animation: fullexpand 15s linear;
     -webkit-animation: fullexpand 15s linear;

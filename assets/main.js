@@ -9,10 +9,10 @@ let current = {
     spawnPattern: 0,
     clickCount: 0
 }
-let startBtn = document.querySelector("#start");
-let counter = document.querySelector("#timer");
-let countTimeSet = document.querySelector("#time")
-let countTime = document.querySelector("#time").value
+let startBtn = document.querySelector("#js-start");
+let counter = document.querySelector("#js-timer");
+let countTimeSet = document.querySelector("#js-time");
+let countTime = document.querySelector("#js-time").value;
 let timer;
 
 // マップ画像の縮小比率
@@ -52,7 +52,7 @@ let mapClick = (e) => {
 }
 
 // map 表示
-const mapSelect = document.querySelector("#mapSelect");
+const mapSelect = document.querySelector("#js-mapSelect");
 mapSelect.onchange = () => {
     // ランダム以外
     if (mapSelect.value<mapCount){
@@ -149,7 +149,7 @@ let start = () => {
     setRandomPattern();
 
     // カウントダウン開始
-    countTime = document.querySelector("#time").value
+    countTime = document.querySelector("#js-time").value
     // settimeoutセット
     timer = window.setTimeout(end, countTime * 1000)
     // CSSclassセット
@@ -184,3 +184,14 @@ window.onload = () => {
     setMap(0);
     startBtn.addEventListener("click", start);
 }
+
+
+
+
+// sample
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems, {
+        edge: "left"
+});
+  });

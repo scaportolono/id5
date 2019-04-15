@@ -4,170 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <title>IdentityV スポーン位置覚え丸</title>
-    <link rel="stylesheet" type="text/css" href="https://yarnpkg.com/en/package/normalize.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://browser.sentry-cdn.com/5.0.7/bundle.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
     <div id="contents">
-    <div id="setting" class="row mbz">
-        <div class="col s5 m5 l5">
-            <label for="mapSelect">マップ選択</label>
-            <select id="mapSelect" name="" class="browser-default">
-                <option value="0">軍需工場</option>
-                <option value="1">赤の教会</option>
-                <option value="2">聖心病院</option>
-                <option value="3">湖景村</option>
-                <option value="4">月の河公園</option>
-                <option value="5">レオの思い出</option>
-                <option value="6">ランダム</option>
-            </select>
+
+        <div id="slide-out" class="sidenav blue-grey darken-3">
+            <div id="setting">
+                <ul>
+                    <li>
+                        <label for="player">プレイヤー</label>
+                        <select id="player" name="" class="browser-default">
+                            <option value="hunter">ハンター</option>
+                            <option value="survivor">サバイバー</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="js-mapSelect">マップ</label>
+                        <select id="js-mapSelect" name="" class="browser-default">
+                            <option value="0">軍需工場</option>
+                            <option value="1">赤の教会</option>
+                            <option value="2">聖心病院</option>
+                            <option value="3">湖景村</option>
+                            <option value="4">月の河公園</option>
+                            <option value="5">レオの思い出</option>
+                            <option value="6">ランダム</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="js-time">制限時間</label>
+                        <select id="js-time" name="" class="browser-default">
+                            <option value="5">5秒</option>
+                            <option value="10">10秒</option>
+                            <option value="15">15秒</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>最寄りのカメラ表示（ハンターのみ・写真家）</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                            <span>他のサバイバー表示（サバイバーのみ・納棺師）</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="collection">
+                <a href="howto.html" target="_blank" class="collection-item blue-grey darken-3">使い方</a>
+                <a href="https://twitter.com/mie_identityV" target="_blank" class="collection-item">Production by みえ吉@mie_identityV</a>
+            </div>
+
         </div>
 
-        <div class="col s5 m5 l5">
-            <label for="time">制限時間</label>
-            <select id="time" name="" class="browser-default">
-                <option value="5">5秒</option>
-                <option value="10">10秒</option>
-                <option value="15">15秒</option>
-            </select>
+        <div id="setting" class="row mbz">
+            <div class="col s10 m10 l10">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="small material-icons blue-grey-text lighten-3">settings</i></a>
+            </div>
+
+            <div class="col s2 m2 l2">
+                <button type="button" id="js-start" class="btn-floating btn-midium waves-effect waves-light pink"><i class="material-icons">play_arrow</i></button>
+            </div>
         </div>
 
-        <div class="col s2 m2 l2">
-            <button type="button" id="start" class="btn-floating btn-large waves-effect waves-light pink"><i class="material-icons">play_arrow</i></button>
+
+        <div class="row mbz">
+            <div class="col s12 m12 l12">
+                <div id="counter">
+                    <div id="js-timer" class="timer"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="main" class="row">
+            <div id="map0" class="mapfield col s12 m12 l12">
+                <img src="img/0.png"> 
+                <div id="map0_answer" class="answer">
+                    <i id="map0_answer_h" class="answer_h"></i>
+                    <i id="map0_answer_s0" class="answer_s"></i>
+                    <i id="map0_answer_s1" class="answer_s"></i>
+                    <i id="map0_answer_s2" class="answer_s"></i>
+                    <i id="map0_answer_s3" class="answer_s"></i>
+                </div>
+                <div id="map0_expected" class="expected">
+                    <i id="map0_expected_h" class="expected_h"></i>
+                    <i id="map0_expected_s0" class="expected_s"></i>
+                    <i id="map0_expected_s1" class="expected_s"></i>
+                    <i id="map0_expected_s2" class="expected_s"></i>
+                    <i id="map0_expected_s3" class="expected_s"></i>
+                </div>
+            </div>
+
+            <div id="map1" class="mapfield col s12 m12 l12">
+                <img src="img/1.png" alt="">
+                <div id="map1_answer" class="answer">
+                    <i id="map1_answer_h" class="answer_h"></i>
+                    <i id="map1_answer_s0" class="answer_s"></i>
+                    <i id="map1_answer_s1" class="answer_s"></i>
+                    <i id="map1_answer_s2" class="answer_s"></i>
+                    <i id="map1_answer_s3" class="answer_s"></i>
+                </div>
+                <div id="map1_expected" class="expected">
+                    <i id="map1_expected_h" class="expected_h"></i>
+                    <i id="map1_expected_s0" class="expected_s"></i>
+                    <i id="map1_expected_s1" class="expected_s"></i>
+                    <i id="map1_expected_s2" class="expected_s"></i>
+                    <i id="map1_expected_s3" class="expected_s"></i>
+                </div>
+            </div>
+
+            <div id="map2" class="mapfield col s12 m12 l12">
+                <img src="img/2.png" alt="">
+                <div id="map2_answer" class="answer">
+                    <i id="map2_answer_h" class="answer_h"></i>
+                    <i id="map2_answer_s0" class="answer_s"></i>
+                    <i id="map2_answer_s1" class="answer_s"></i>
+                    <i id="map2_answer_s2" class="answer_s"></i>
+                    <i id="map2_answer_s3" class="answer_s"></i>
+                </div>
+                <div id="map2_expected" class="expected">
+                    <i id="map2_expected_h" class="expected_h"></i>
+                    <i id="map2_expected_s0" class="expected_s"></i>
+                    <i id="map2_expected_s1" class="expected_s"></i>
+                    <i id="map2_expected_s2" class="expected_s"></i>
+                    <i id="map2_expected_s3" class="expected_s"></i>
+                </div>
+            </div>
+
+            <div id="map3" class="mapfield col s12 m12 l12">
+                <img src="img/3.png" alt="">
+                <div id="map3_answer" class="answer">
+                    <i id="map3_answer_h" class="answer_h"></i>
+                    <i id="map3_answer_s0" class="answer_s"></i>
+                    <i id="map3_answer_s1" class="answer_s"></i>
+                    <i id="map3_answer_s2" class="answer_s"></i>
+                    <i id="map3_answer_s3" class="answer_s"></i>
+                </div>
+                <div id="map3_expected" class="expected">
+                    <i id="map3_expected_h" class="expected_h"></i>
+                    <i id="map3_expected_s0" class="expected_s"></i>
+                    <i id="map3_expected_s1" class="expected_s"></i>
+                    <i id="map3_expected_s2" class="expected_s"></i>
+                    <i id="map3_expected_s3" class="expected_s"></i>
+                </div>
+            </div>
+
+            <div id="map4" class="mapfield col s12 m12 l12">
+                <img src="img/4.png" alt="">
+                <div id="map4_answer" class="answer">
+                    <i id="map4_answer_h" class="answer_h"></i>
+                    <i id="map4_answer_s0" class="answer_s"></i>
+                    <i id="map4_answer_s1" class="answer_s"></i>
+                    <i id="map4_answer_s2" class="answer_s"></i>
+                    <i id="map4_answer_s3" class="answer_s"></i>
+                </div>
+                <div id="map4_expected" class="expected">
+                    <i id="map4_expected_h" class="expected_h"></i>
+                    <i id="map4_expected_s0" class="expected_s"></i>
+                    <i id="map4_expected_s1" class="expected_s"></i>
+                    <i id="map4_expected_s2" class="expected_s"></i>
+                    <i id="map4_expected_s3" class="expected_s"></i>
+                </div>
+            </div>
+
+            <div id="map5" class="mapfield col s12 m12 l12">
+                <img src="img/5.png" alt="">
+                <div id="map5_answer" class="answer">
+                    <i id="map5_answer_h" class="answer_h"></i>
+                    <i id="map5_answer_s0" class="answer_s"></i>
+                    <i id="map5_answer_s1" class="answer_s"></i>
+                    <i id="map5_answer_s2" class="answer_s"></i>
+                    <i id="map5_answer_s3" class="answer_s"></i>
+                </div>
+                <div id="map5_expected" class="expected">
+                    <i id="map5_expected_h" class="expected_h"></i>
+                    <i id="map5_expected_s0" class="expected_s"></i>
+                    <i id="map5_expected_s1" class="expected_s"></i>
+                    <i id="map5_expected_s2" class="expected_s"></i>
+                    <i id="map5_expected_s3" class="expected_s"></i>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="row mbz">
-        <div class="col s12 m12 l12">
-            <div id="counter">
-                <div id="timer" class=""></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="main" class="row">
-        <div id="map0" class="mapfield col s12 m12 l12">
-            <img src="img/0.png"> 
-            <div id="map0_answer" class="answer">
-                <i id="map0_answer_h" class="answer_h"></i>
-                <i id="map0_answer_s0" class="answer_s"></i>
-                <i id="map0_answer_s1" class="answer_s"></i>
-                <i id="map0_answer_s2" class="answer_s"></i>
-                <i id="map0_answer_s3" class="answer_s"></i>
-            </div>
-            <div id="map0_expected" class="expected">
-                <i id="map0_expected_h" class="expected_h"></i>
-                <i id="map0_expected_s0" class="expected_s"></i>
-                <i id="map0_expected_s1" class="expected_s"></i>
-                <i id="map0_expected_s2" class="expected_s"></i>
-                <i id="map0_expected_s3" class="expected_s"></i>
-            </div>
-        </div>
-
-        <div id="map1" class="mapfield col s12 m12 l12">
-            <img src="img/1.png" alt="">
-            <div id="map1_answer" class="answer">
-                <i id="map1_answer_h" class="answer_h"></i>
-                <i id="map1_answer_s0" class="answer_s"></i>
-                <i id="map1_answer_s1" class="answer_s"></i>
-                <i id="map1_answer_s2" class="answer_s"></i>
-                <i id="map1_answer_s3" class="answer_s"></i>
-            </div>
-            <div id="map1_expected" class="expected">
-                <i id="map1_expected_h" class="expected_h"></i>
-                <i id="map1_expected_s0" class="expected_s"></i>
-                <i id="map1_expected_s1" class="expected_s"></i>
-                <i id="map1_expected_s2" class="expected_s"></i>
-                <i id="map1_expected_s3" class="expected_s"></i>
-            </div>
-        </div>
-        
-        <div id="map2" class="mapfield col s12 m12 l12">
-            <img src="img/2.png" alt="">
-            <div id="map2_answer" class="answer">
-                <i id="map2_answer_h" class="answer_h"></i>
-                <i id="map2_answer_s0" class="answer_s"></i>
-                <i id="map2_answer_s1" class="answer_s"></i>
-                <i id="map2_answer_s2" class="answer_s"></i>
-                <i id="map2_answer_s3" class="answer_s"></i>
-            </div>
-            <div id="map2_expected" class="expected">
-                <i id="map2_expected_h" class="expected_h"></i>
-                <i id="map2_expected_s0" class="expected_s"></i>
-                <i id="map2_expected_s1" class="expected_s"></i>
-                <i id="map2_expected_s2" class="expected_s"></i>
-                <i id="map2_expected_s3" class="expected_s"></i>
-            </div>
-        </div>
-        
-        <div id="map3" class="mapfield col s12 m12 l12">
-            <img src="img/3.png" alt="">
-            <div id="map3_answer" class="answer">
-                <i id="map3_answer_h" class="answer_h"></i>
-                <i id="map3_answer_s0" class="answer_s"></i>
-                <i id="map3_answer_s1" class="answer_s"></i>
-                <i id="map3_answer_s2" class="answer_s"></i>
-                <i id="map3_answer_s3" class="answer_s"></i>
-            </div>
-            <div id="map3_expected" class="expected">
-                <i id="map3_expected_h" class="expected_h"></i>
-                <i id="map3_expected_s0" class="expected_s"></i>
-                <i id="map3_expected_s1" class="expected_s"></i>
-                <i id="map3_expected_s2" class="expected_s"></i>
-                <i id="map3_expected_s3" class="expected_s"></i>
-            </div>
-        </div>
-
-        <div id="map4" class="mapfield col s12 m12 l12">
-            <img src="img/4.png" alt="">
-            <div id="map4_answer" class="answer">
-                <i id="map4_answer_h" class="answer_h"></i>
-                <i id="map4_answer_s0" class="answer_s"></i>
-                <i id="map4_answer_s1" class="answer_s"></i>
-                <i id="map4_answer_s2" class="answer_s"></i>
-                <i id="map4_answer_s3" class="answer_s"></i>
-            </div>
-            <div id="map4_expected" class="expected">
-                <i id="map4_expected_h" class="expected_h"></i>
-                <i id="map4_expected_s0" class="expected_s"></i>
-                <i id="map4_expected_s1" class="expected_s"></i>
-                <i id="map4_expected_s2" class="expected_s"></i>
-                <i id="map4_expected_s3" class="expected_s"></i>
-            </div>
-        </div>
-
-        <div id="map5" class="mapfield col s12 m12 l12">
-            <img src="img/5.png" alt="">
-            <div id="map5_answer" class="answer">
-                <i id="map5_answer_h" class="answer_h"></i>
-                <i id="map5_answer_s0" class="answer_s"></i>
-                <i id="map5_answer_s1" class="answer_s"></i>
-                <i id="map5_answer_s2" class="answer_s"></i>
-                <i id="map5_answer_s3" class="answer_s"></i>
-            </div>
-            <div id="map5_expected" class="expected">
-                <i id="map5_expected_h" class="expected_h"></i>
-                <i id="map5_expected_s0" class="expected_s"></i>
-                <i id="map5_expected_s1" class="expected_s"></i>
-                <i id="map5_expected_s2" class="expected_s"></i>
-                <i id="map5_expected_s3" class="expected_s"></i>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <footer>
-        <ul class="row">
-            <li class="col s12 m12 l12">Production by <a href="https://twitter.com/mie_identityV">@mie_identityV</a></li>
-            <li class="col s12 m12 l12">不具合、お問い合わせございましたらDMまたは<a href="https://marshmallow-qa.com/mie_identityv">こちら</a>まで</li>
-        </ul>
-    </footer>
 
 
 </body>
-<script src="https://browser.sentry-cdn.com/5.0.7/bundle.min.js" crossorigin="anonymous"></script>
 <script src="dist/bundle.js" defer></script>
 </html>
