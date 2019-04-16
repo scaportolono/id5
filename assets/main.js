@@ -7,13 +7,25 @@ let current = {
     mapID: 0,
     mapRect: {},
     spawnPattern: 0,
-    clickCount: 0
+    clickCount: 0,
+    player: "hunter"
 }
-let startBtn = document.querySelector("#js-start");
-let counter = document.querySelector("#js-timer");
-let countTimeSet = document.querySelector("#js-time");
-let countTime = document.querySelector("#js-time").value;
-let timer;
+let elems = {
+    sidenav: document.querySelector(".sidenav"),
+    startBtn: document.querySelector("#js-start"),
+    settingsBtn: document.querySelector("#js-settings"),
+    playerSelect: document.querySelector("#js-player"),
+    mapSelect: document.querySelector("#js-mapSelect"),
+    countTimeSelect: document.querySelector("#js-time"),
+    cameraOnCheckbox: document.querySelector("#js-camera-on"),
+    othreSvShowOnCheckbox: document.querySelector("#js-other-sv-on"),
+    progressBar: document.querySelector("#js-timer")
+}
+let counter = {
+    time: 5,
+    className: `time${elems.countTimeSelect.value}sec`,
+    setTimer: {}
+}
 
 // マップ画像の縮小比率
 let ratio = () => {
@@ -51,16 +63,6 @@ let mapClick = (e) => {
     }
 }
 
-// map 表示
-const mapSelect = document.querySelector("#js-mapSelect");
-mapSelect.onchange = () => {
-    // ランダム以外
-    if (mapSelect.value<mapCount){
-        setMap(mapSelect.value);
-    } else {
-        setRandomMap();
-    }
-}
 // randomMap
 let setRandomMap = () => {
     var randMapID = Math.floor(Math.random() * mapCount);
@@ -99,17 +101,34 @@ let setRandomPattern = () => {
     // random
     var patternID = Math.floor(Math.random() * patterns.length);
     current.spawnPattern = patterns[patternID] 
+}
 
+// question
+let questSet = () => {
+    var player = current.player
     var ptn = current.spawnPattern
     var mapRatio = ratio();
+    console.log(`${player}の出題を設定します`);
 
-    // answer_hの座標設定
-    draw(document.getElementById("map" + current.mapID + "_answer_h"), ptn.hunter.x * mapRatio, ptn.hunter.y * mapRatio);
+    if (player === "hunter") {
+        // answer_hの座標設定
+        draw(document.getElementById(`map${current.mapID}_answer_h`), ptn.hunter.x * mapRatio, ptn.hunter.y * mapRatio);
+        // expected_sの座標設定
+        for (var i=0; i<4; i++){
+            draw(document.getElementById(`map${current.mapID}_expected_s${i}`), ptn.survivors[i].x * mapRatio, ptn.survivors[i].y * mapRatio)
+        }
+    } else {
+        // answer_sの座標設定
+        for (var i=0; i<4; i++){
+            draw(document.getElementById(`map${current.mapID}_answer_s${i}`), ptn.survivors[i].x * mapRatio, ptn.survivors[i].y * mapRatio)
+        }
 
-    // expected_sの座標設定
-    for (var i=0; i<4; i++){
-        draw(document.getElementById("map" + current.mapID + "_expected_s" + i), ptn.survivors[i].x * mapRatio, ptn.survivors[i].y * mapRatio)
+        // expected_hの座標設定
+        draw(document.getElementById(`map${current.mapID}_expected_h`), ptn.hunter.x * mapRatio, ptn.hunter.y * mapRatio);
+
     }
+
+
 }
 
 // expectedのReset
@@ -122,6 +141,10 @@ let resetExpected = () =>{
     for (var i=0; i<expSpawn.length; i++) {
         expSpawn[i].classList.remove("answerd");
     }
+    var expSpawnH = document.querySelectorAll(".expected_h");
+    for (var i=0; i<expSpawnH.length; i++) {
+        expSpawnH[i].classList.remove("answerd");
+    }
 }
 // answerdのReset
 let resetAnswerd = () => {
@@ -129,31 +152,40 @@ let resetAnswerd = () => {
     for (var i=0; i<ansSpawn.length; i++) {
         ansSpawn[i].classList.remove("answerd");
     }
+    var ansSpawnH = document.querySelectorAll(".answer_s");
+    for (var i=0; i<ansSpawnH.length; i++) {
+        ansSpawnH[i].classList.remove("answerd");
+    }
 }
 
 // start
 let start = () => {
     // startボタンのdisabled
-    startBtn.disabled = "disabled"
-    mapSelect.disabled = "disabled"
-    countTimeSet.disabled = "disabled"
+    elems.startBtn.disabled = "disabled"
+    elems.settingsBtn.disabled = "disabled"
+    elems.mapSelect.disabled = "disabled"
+    elems.countTimeSelect.disabled = "disabled"
 
     // expected, answerdのリセット
     resetExpected();
     resetAnswerd();
     
-    // Mapをsetし直す
-    if (mapSelect.value==mapCount){
+    // Mapをset
+    if (elems.mapSelect.value==mapCount){
         setRandomMap();
     }
+
+    // スポーンパターンSet
     setRandomPattern();
 
+    // 出題と回答のSet
+    questSet();
+
     // カウントダウン開始
-    countTime = document.querySelector("#js-time").value
     // settimeoutセット
-    timer = window.setTimeout(end, countTime * 1000)
+    counter.setTimer = window.setTimeout(end, counter.time * 1000)
     // CSSclassセット
-    counter.classList.add("time" + countTime + "sec");
+    elems.progressBar.classList.add(counter.className);
 
     // 画像クリックでその位置に印をつける（4回まで)
     current.mapElem.addEventListener('click', mapClick)
@@ -166,32 +198,57 @@ let end = () => {
     // クリックカウントのリセット
     current.clickCount = 0;
     // カウントダウンが途中なら破棄
-    window.clearTimeout(timer);
-    counter.classList.remove("time" + countTime + "sec");
+    window.clearTimeout(counter.setTimer);
+    elems.progressBar.classList.remove(counter.className);
 
     // expectedをdisplay:blockに
     current.mapElem.querySelector(".expected").classList.remove("hidden");
     
     // startボタンのdisabled
-    startBtn.disabled = ""
-    mapSelect.disabled = ""
-    countTimeSet.disabled = ""
+    elems.startBtn.disabled = ""
+    elems.settingsBtn.disabled = ""
+    elems.mapSelect.disabled = ""
+    elems.countTimeSelect.disabled = ""
 }
 
 // load(初期表示)
 window.onload = () => {
     // 工場初期表示
     setMap(0);
-    startBtn.addEventListener("click", start);
+    elems.startBtn.addEventListener("click", start);
+
+    // sidenav
+    var instances = M.Sidenav.init(elems.sidenav);
 }
 
-
-
-
-// sample
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, {
-        edge: "left"
-});
-  });
+// select box event
+// player
+elems.playerSelect.onchange = ()=>{
+    elems.cameraOnCheckbox.checked = false;
+    elems.othreSvShowOnCheckbox.checked = false;
+    switch (elems.playerSelect.value) {
+        case "survivor" :
+            elems.cameraOnCheckbox.disabled = "disabled";
+            elems.othreSvShowOnCheckbox.disabled = "";
+            break;
+        case "hunter":
+        default:
+            elems.cameraOnCheckbox.disabled = "";
+            elems.othreSvShowOnCheckbox.disabled = "disabled";
+    }
+    current.player =  elems.playerSelect.value;
+};
+// map
+elems.mapSelect.onchange = () => {
+    if (elems.mapSelect.value<mapCount){
+        setMap(elems.mapSelect.value);
+    } else {
+        // ランダム表示
+        setRandomMap();
+    }
+};
+// timer 
+elems.countTimeSelect.onchange = ()=> {
+    counter.time = elems.countTimeSelect.value;
+    counter.className = `time${counter.time}sec`
+};

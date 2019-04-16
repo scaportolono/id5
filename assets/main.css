@@ -112,15 +112,18 @@ body{
     display: none;
     background-color: rgba(255,255,0,0.5);
 }
-.answer_h.answerd,
-.answer_s.answerd{
-    display: block;
-}
 .expected_h{
     display:none;
 }
 .expected_s{
     background-color: rgba(0,0,255,0.5);
+}
+.answer_h.answerd,
+.answer_s.answerd{
+    display: block;
+}
+.expected_h.answerd,
+.expected_s.answerd{
 }
 
 /* helper and reset  */
