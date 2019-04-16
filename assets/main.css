@@ -104,26 +104,44 @@ body{
     border-radius: 10px;
     position: absolute;
 }
-.answer_h{
+/* hunter版のスポーン */
+.hunter .answer_h{
     display: none;
     background-color: rgba(255,0,0,0.5);
 }
-.answer_s{
+.hunter .answer_s{
     display: none;
     background-color: rgba(255,255,0,0.5);
 }
-.expected_h{
+.hunter .expected_h{
     display:none;
 }
-.expected_s{
+.hunter .expected_s{
     background-color: rgba(0,0,255,0.5);
 }
-.answer_h.answerd,
-.answer_s.answerd{
+.hunter .answer_h.answerd,
+.hunter .answer_s.answerd{
     display: block;
 }
-.expected_h.answerd,
-.expected_s.answerd{
+/* survivor版のスポーン */
+.survivor .answer_h{
+    display: none;
+    background-color: rgba(255,255,0,0.5);
+}
+.survivor .answer_s{
+    display: none;
+    background-color: rgba(0,0,255,0.5);
+}
+.survivor .expected_h{
+    display: block;
+    background-color: rgba(255,0,0,0.5);
+}
+.survivor .expected_s{
+    display:none;
+}
+.survivor .answer_h.answerd,
+.survivor .answer_s.answerd{
+    display: block;
 }
 
 /* helper and reset  */

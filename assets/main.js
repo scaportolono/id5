@@ -11,6 +11,7 @@ let current = {
     player: "hunter"
 }
 let elems = {
+    mapElem: document.querySelector("#map"),
     sidenav: document.querySelector(".sidenav"),
     startBtn: document.querySelector("#js-start"),
     settingsBtn: document.querySelector("#js-settings"),
@@ -51,14 +52,20 @@ let draw = (elem,x,y) => {
     elem.style.left = x - 5 + "px"
     elem.style.top = y - 5 + "px"
 }
+
 // クリックイベント
 let mapClick = (e) => {
     // 座標とって返す
     let { x, y } = spawn(e.pageX, e.pageY)
-    var count = current.clickCount
-    draw(document.getElementById("map" + current.mapID + "_answer_s" + count), x, y)
-    current.clickCount++;
-    if (current.clickCount === 4) {
+    if (current.player === "hunter") {
+        var count = current.clickCount
+        draw(document.getElementById("map" + current.mapID + "_answer_s" + count), x, y)
+        current.clickCount++;
+        if (current.clickCount === 4) {
+            end();
+        }
+    } else {
+        draw(document.getElementById("map" + current.mapID + "_answer_h"), x, y)
         end();
     }
 }
@@ -125,10 +132,7 @@ let questSet = () => {
 
         // expected_hの座標設定
         draw(document.getElementById(`map${current.mapID}_expected_h`), ptn.hunter.x * mapRatio, ptn.hunter.y * mapRatio);
-
     }
-
-
 }
 
 // expectedのReset
@@ -152,7 +156,7 @@ let resetAnswerd = () => {
     for (var i=0; i<ansSpawn.length; i++) {
         ansSpawn[i].classList.remove("answerd");
     }
-    var ansSpawnH = document.querySelectorAll(".answer_s");
+    var ansSpawnH = document.querySelectorAll(".answer_h");
     for (var i=0; i<ansSpawnH.length; i++) {
         ansSpawnH[i].classList.remove("answerd");
     }
@@ -226,13 +230,19 @@ window.onload = () => {
 elems.playerSelect.onchange = ()=>{
     elems.cameraOnCheckbox.checked = false;
     elems.othreSvShowOnCheckbox.checked = false;
+    resetExpected();
+    resetAnswerd();
     switch (elems.playerSelect.value) {
         case "survivor" :
+            elems.mapElem.classList.remove("hunter");
+            elems.mapElem.classList.add("survivor");
             elems.cameraOnCheckbox.disabled = "disabled";
             elems.othreSvShowOnCheckbox.disabled = "";
             break;
         case "hunter":
         default:
+            elems.mapElem.classList.remove("survivor");
+            elems.mapElem.classList.add("hunter");
             elems.cameraOnCheckbox.disabled = "";
             elems.othreSvShowOnCheckbox.disabled = "disabled";
     }
