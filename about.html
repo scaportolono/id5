@@ -10,10 +10,17 @@
     <script src="https://browser.sentry-cdn.com/5.0.7/bundle.min.js" crossorigin="anonymous"></script>
     <style>
         body{
-            font-size: 0.8rem;
+            font-size: 0.9rem;
         }
         h2,h3{
             font-size: 2rem;
+        }
+        h4{
+            font-size: 1.5rem;
+        }
+        dd{
+            margin: 8px 0;
+            margin-inline-start: 20px;
         }
     </style>
 </head>
@@ -25,17 +32,36 @@
                     <h3 class="header blue-grey-text text-lighten-1">せつめい</h3>
                     <p class="blue-grey-text text-lighten-5">
                         第五人格のスポーン位置を覚える単語帳のようなものです。<br>
-                        対応マップはランクマッチで使われている6種類です。<br>
                         マップごとのランダム、全マップからのランダム出題を選択できます。<br>
                         回答表示までの時間は5,10,15秒から選択できます。<br>
                         スタートボタンを押すとカウントダウンが始まります。<br>
                         マップ上をタップすると4箇所までマップ上に印をつけることができます。<br>
                         制限時間終了または4箇所タップ終了時に回答が表示されます。<br>
-
-                        他のサバイバー表示は納棺師のスキル社会恐怖を想定しています。
-                        最寄りカメラ表示は写真家の初動を考慮できるようにしています。
-                        どちらも作者がよく利用するキャラなので、、　
                     </p>
+                    <h4 class="header blue-grey-text text-lighten-1">スポーンの色について</h4>
+                    <p class="blue-grey-text text-lighten-5">
+                        赤・・・ハンタースポーン<br>
+                        黄・・・サバイバースポーン(回答)<br>
+                        青・・・サバイバースポーン(正解)<br>
+                    </p>
+                    <h4 class="header blue-grey-text text-lighten-1">対応マップ</h4>
+                    <p class="blue-grey-text text-lighten-5">
+                        対応マップはランクマッチで使われている6種類です。<br>
+                    </p>
+                    <h4 class="header blue-grey-text text-lighten-1">オプションについて</h4>
+                    <dl class="blue-grey-text text-lighten-5">
+                        <dt>最寄りのカメラ表示</dt>
+                        <dd>
+                        スポーン位置に一番近い写真家のカメラを表示します<br>
+                        (プレイヤーがハンターのときのみ設定できます)
+                        </dd>
+                        <dt>他のサバイバー表示</dt>
+                        <dd>
+                        自分の以外のサバイバーのスポーンも表示します<br>
+                        納棺師の特質「社交恐怖」を想定しています<br>
+                        (プレイヤーがサバイバーのときのみ設定できます)
+                        </dd>
+                    </dl>
                 </div>
             </div>
             <div class="row">
@@ -51,7 +77,7 @@
                 <div class="col s12 m12 l12">
                     <h3 class="header blue-grey-text text-lighten-1">おといあわせ</h3>
                     <p class="blue-grey-text text-lighten-5">
-                        ついったーまで
+                        <a href="https://twitter.com/mie_identityV" target="_blank">Twitter @mie_identityV</a><br>
                     </p>
                 </div>
             </div>
