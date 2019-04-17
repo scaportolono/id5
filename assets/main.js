@@ -121,7 +121,9 @@ let questSet = () => {
         // answer_hの座標設定
         draw(document.getElementById(`map${current.mapID}_answer_h`), ptn.hunter.x * mapRatio, ptn.hunter.y * mapRatio);
         // cameraの座標設定
-        draw(document.getElementById(`map${current.mapID}_answer_camera`), ptn.hunter.camera.x * mapRatio, ptn.hunter.camera.y * mapRatio);
+        if (elems.cameraOnCheckbox.checked) {
+            draw(document.getElementById(`map${current.mapID}_answer_camera`), ptn.hunter.camera.x * mapRatio, ptn.hunter.camera.y * mapRatio);
+        }
 
         // expected_sの座標設定
         for (var i=0; i<4; i++){
@@ -182,6 +184,10 @@ let resetAnswerd = () => {
     var ansSpawnH = document.querySelectorAll(".answer_h");
     for (var i=0; i<ansSpawnH.length; i++) {
         ansSpawnH[i].classList.remove("answerd");
+    }
+    var ansSpawnCamera = document.querySelectorAll(".answer_camera");
+    for (var i=0; i<ansSpawnCamera.length; i++) {
+        ansSpawnCamera[i].classList.remove("answerd");
     }
 }
 
