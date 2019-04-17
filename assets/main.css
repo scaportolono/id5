@@ -107,40 +107,63 @@ body{
 /* hunter版のスポーン */
 .hunter .answer_h{
     display: none;
-    background-color: rgba(255,0,0,0.5);
+    background-color: rgba(255,0,0,0.8);
 }
 .hunter .answer_s{
     display: none;
-    background-color: rgba(255,255,0,0.5);
+    background-color: rgba(255,255,0,0.8);
 }
 .hunter .expected_h{
     display:none;
 }
 .hunter .expected_s{
-    background-color: rgba(0,0,255,0.5);
+    background-color: rgba(0,50,255,0.8);
 }
 .hunter .answer_h.answerd,
 .hunter .answer_s.answerd{
     display: block;
 }
+.hunter .answer_camera{
+    display:none;
+    width: 8px;
+    border-right: 8px solid transparent;
+    border-bottom: 16px solid rgba(178,206,84,0.8);
+    border-left: 8px solid transparent; 
+}
+.hunter .answer_camera.answerd{
+    display: block;
+}
 /* survivor版のスポーン */
 .survivor .answer_h{
     display: none;
-    background-color: rgba(255,255,0,0.5);
+    background-color: rgba(255,255,0,0.8);
 }
 .survivor .answer_s{
     display: none;
-    background-color: rgba(0,0,255,0.5);
+}
+.survivor .answer_s.self{
+    background-color: rgba(0,10,255,0.8);
+}
+.survivor .answer_s.other{
+    background-color: rgba(0,180,255,0.5);
 }
 .survivor .expected_h{
     display: block;
-    background-color: rgba(255,0,0,0.5);
+    background-color: rgba(255,0,0,0.8);
 }
 .survivor .expected_s{
     display:none;
 }
 .survivor .answer_h.answerd,
-.survivor .answer_s.answerd{
+.survivor .answer_s.self.answerd{
+    display: block;
+}
+.survivor .answer_s.other.answerd{
+    display: none;
+}
+/* 社交恐怖 */
+.survivor .aesop .answer_s.self.answerd,
+.survivor .aesop .answer_s.other.answerd{
     display: block;
 }
 

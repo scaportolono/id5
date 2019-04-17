@@ -49,8 +49,8 @@ let spawn = (clickX, clickY) => {
 // _h,_sの座標設定
 let draw = (elem,x,y) => {
     elem.classList.add("answerd")
-    elem.style.left = x - 5 + "px"
-    elem.style.top = y - 5 + "px"
+    elem.style.left = x - 10 + "px"
+    elem.style.top = y - 10 + "px"
 }
 
 // クリックイベント
@@ -120,18 +120,39 @@ let questSet = () => {
     if (player === "hunter") {
         // answer_hの座標設定
         draw(document.getElementById(`map${current.mapID}_answer_h`), ptn.hunter.x * mapRatio, ptn.hunter.y * mapRatio);
+        // cameraの座標設定
+        draw(document.getElementById(`map${current.mapID}_answer_camera`), ptn.hunter.camera.x * mapRatio, ptn.hunter.camera.y * mapRatio);
+
         // expected_sの座標設定
         for (var i=0; i<4; i++){
             draw(document.getElementById(`map${current.mapID}_expected_s${i}`), ptn.survivors[i].x * mapRatio, ptn.survivors[i].y * mapRatio)
         }
     } else {
-        // answer_sの座標設定
-        for (var i=0; i<4; i++){
-            draw(document.getElementById(`map${current.mapID}_answer_s${i}`), ptn.survivors[i].x * mapRatio, ptn.survivors[i].y * mapRatio)
+        // 自身
+        var selfID = Math.floor(Math.random() * 4);
+        var showOther = elems.othreSvShowOnCheckbox.checked
+
+        if (showOther) {
+            // aesopClassをつける
+            document.getElementById(`map${current.mapID}_answer`).classList.add("aesop")
+        } else {
+            document.getElementById(`map${current.mapID}_answer`).classList.remove("aesop")
         }
 
+        // answer_sの座標設定
+        var answer_s
+        for (var i=0; i<4; i++){
+            answer_s = document.getElementById(`map${current.mapID}_answer_s${i}`);
+            if (i === selfID){
+                answer_s.classList.add("self");
+            } else {
+                answer_s.classList.add("other");
+            }
+            draw(answer_s, ptn.survivors[i].x * mapRatio, ptn.survivors[i].y * mapRatio)
+        }
         // expected_hの座標設定
         draw(document.getElementById(`map${current.mapID}_expected_h`), ptn.hunter.x * mapRatio, ptn.hunter.y * mapRatio);
+
     }
 }
 
@@ -155,6 +176,8 @@ let resetAnswerd = () => {
     var ansSpawn = document.querySelectorAll(".answer_s");
     for (var i=0; i<ansSpawn.length; i++) {
         ansSpawn[i].classList.remove("answerd");
+        ansSpawn[i].classList.remove("self");
+        ansSpawn[i].classList.remove("other");
     }
     var ansSpawnH = document.querySelectorAll(".answer_h");
     for (var i=0; i<ansSpawnH.length; i++) {
@@ -207,6 +230,9 @@ let end = () => {
 
     // expectedをdisplay:blockに
     current.mapElem.querySelector(".expected").classList.remove("hidden");
+
+    // aesop classをつける(あれば) 
+    current.mapElem.querySelector(".answer"). classList.add("aesop");
     
     // startボタンのdisabled
     elems.startBtn.disabled = ""
