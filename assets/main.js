@@ -115,7 +115,6 @@ let questSet = () => {
     var player = current.player
     var ptn = current.spawnPattern
     var mapRatio = ratio();
-    console.log(`${player}の出題を設定します`);
 
     if (player === "hunter") {
         // answer_hの座標設定
