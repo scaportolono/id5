@@ -94,6 +94,7 @@ body{
 }
 
 .answer_h,
+.answer_camera,
 .answer_s,
 .expected_h,
 .expected_s{
@@ -125,10 +126,8 @@ body{
 }
 .hunter .answer_camera{
     display:none;
-    width: 8px;
-    border-right: 8px solid transparent;
-    border-bottom: 16px solid rgba(178,206,84,0.8);
-    border-left: 8px solid transparent; 
+    background-color: rgba(206,84,156,0.5);
+    z-index: -1;
 }
 .hunter .answer_camera.answerd{
     display: block;
@@ -160,6 +159,9 @@ body{
 }
 .survivor .answer_s.other.answerd{
     display: none;
+}
+.survivor .answer_camera{
+    display:none;
 }
 /* 社交恐怖 */
 .survivor .aesop .answer_s.self.answerd,
