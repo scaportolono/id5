@@ -55,6 +55,8 @@ let draw = (elem,x,y) => {
 
 // クリックイベント
 let mapClick = (e) => {
+    // currentMapの座標
+    current.mapRect = current.mapElem.getBoundingClientRect();
     // 座標とって返す
     let { x, y } = spawn(e.pageX, e.pageY)
     if (current.player === "hunter") {
