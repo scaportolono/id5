@@ -118,7 +118,7 @@ let questSet = () => {
     var ptn = current.spawnPattern
     var mapRatio = ratio();
 
-    if (player === "hunter") {
+    if ((player === "hunter")||(player === "confirm")) {
         // answer_hの座標設定
         draw(document.getElementById(`map${current.mapID}_answer_h`), ptn.hunter.x * mapRatio, ptn.hunter.y * mapRatio);
         // cameraの座標設定
@@ -197,8 +197,6 @@ let start = () => {
     // startボタンのdisabled
     elems.startBtn.disabled = "disabled"
     elems.settingsBtn.disabled = "disabled"
-    elems.mapSelect.disabled = "disabled"
-    elems.countTimeSelect.disabled = "disabled"
 
     // expected, answerdのリセット
     resetExpected();
@@ -244,8 +242,6 @@ let end = () => {
     // startボタンのdisabled
     elems.startBtn.disabled = ""
     elems.settingsBtn.disabled = ""
-    elems.mapSelect.disabled = ""
-    elems.countTimeSelect.disabled = ""
 }
 
 // load(初期表示)
@@ -266,18 +262,31 @@ elems.playerSelect.onchange = ()=>{
     resetExpected();
     resetAnswerd();
     switch (elems.playerSelect.value) {
+        case "confirm" :
+            elems.mapElem.classList.remove("survivor");
+            elems.mapElem.classList.add("hunter");
+            elems.countTimeSelect.disabled = "disabled";
+            elems.cameraOnCheckbox.disabled = "";
+            elems.othreSvShowOnCheckbox.disabled = "disabled";
+            counter.time = 0;
+            counter.className = `time${counter.time}sec`;
+            break;
         case "survivor" :
             elems.mapElem.classList.remove("hunter");
             elems.mapElem.classList.add("survivor");
+            elems.countTimeSelect.disabled = "";
             elems.cameraOnCheckbox.disabled = "disabled";
             elems.othreSvShowOnCheckbox.disabled = "";
+            elems.countTimeSelect.onchange();
             break;
         case "hunter":
         default:
             elems.mapElem.classList.remove("survivor");
             elems.mapElem.classList.add("hunter");
+            elems.countTimeSelect.disabled = "";
             elems.cameraOnCheckbox.disabled = "";
             elems.othreSvShowOnCheckbox.disabled = "disabled";
+            elems.countTimeSelect.onchange();
     }
     current.player =  elems.playerSelect.value;
 };
@@ -293,5 +302,5 @@ elems.mapSelect.onchange = () => {
 // timer 
 elems.countTimeSelect.onchange = ()=> {
     counter.time = elems.countTimeSelect.value;
-    counter.className = `time${counter.time}sec`
+    counter.className = `time${counter.time}sec`;
 };
