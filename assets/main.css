@@ -199,6 +199,11 @@ select{
     padding: 8px;
     line-height: inherit;
 }
+.sidenav li>a{
+    color: #000;
+    text-align: right;
+    padding: 0;
+}
 .footernav li>a{
     color: #4fc3f7;
     height: 30px;
