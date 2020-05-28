@@ -3,7 +3,7 @@
 
 # Requirement
 
-- Node.js v10 (v10.16.3)
+- Node.js v14 (14.3.0)
 - Webpack v4 (4.39.3)
 
 # Setup
