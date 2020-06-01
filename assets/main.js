@@ -19,6 +19,7 @@ let elems = {
     mapSelect: document.querySelector("#js-mapSelect"),
     countTimeSelect: document.querySelector("#js-time"),
     cameraOnCheckbox: document.querySelector("#js-camera-on"),
+    consoleOnCheckbox: document.querySelector("#js-console-on"),
     othreSvShowOnCheckbox: document.querySelector("#js-other-sv-on"),
     progressBar: document.querySelector("#js-timer")
 }
@@ -125,6 +126,10 @@ let questSet = () => {
         if (elems.cameraOnCheckbox.checked) {
             draw(document.getElementById(`map${current.mapID}_answer_camera`), ptn.hunter.camera.x * mapRatio, ptn.hunter.camera.y * mapRatio);
         }
+        // consoleの座標設定
+        if (elems.consoleOnCheckbox.checked) {
+            draw(document.getElementById(`map${current.mapID}_answer_console`), ptn.hunter.console.x * mapRatio, ptn.hunter.console.y * mapRatio);
+        }
 
         // expected_sの座標設定
         for (var i=0; i<4; i++){
@@ -189,6 +194,10 @@ let resetAnswerd = () => {
     var ansSpawnCamera = document.querySelectorAll(".answer_camera");
     for (var i=0; i<ansSpawnCamera.length; i++) {
         ansSpawnCamera[i].classList.remove("answerd");
+    }
+    var ansSpawnConsole = document.querySelectorAll(".answer_console");
+    for (var i=0; i<ansSpawnConsole.length; i++) {
+        ansSpawnConsole[i].classList.remove("answerd");
     }
 }
 
@@ -258,6 +267,7 @@ window.onload = () => {
 // player
 elems.playerSelect.onchange = ()=>{
     elems.cameraOnCheckbox.checked = false;
+    elems.consoleOnCheckbox.checked = false;
     elems.othreSvShowOnCheckbox.checked = false;
     resetExpected();
     resetAnswerd();
@@ -267,6 +277,7 @@ elems.playerSelect.onchange = ()=>{
             elems.mapElem.classList.add("hunter");
             elems.countTimeSelect.disabled = "disabled";
             elems.cameraOnCheckbox.disabled = "";
+            elems.consoleOnCheckbox.disabled = "";
             elems.othreSvShowOnCheckbox.disabled = "disabled";
             counter.time = 0;
             counter.className = `time${counter.time}sec`;
@@ -276,6 +287,7 @@ elems.playerSelect.onchange = ()=>{
             elems.mapElem.classList.add("survivor");
             elems.countTimeSelect.disabled = "";
             elems.cameraOnCheckbox.disabled = "disabled";
+            elems.consoleOnCheckbox.disabled = "disabled";
             elems.othreSvShowOnCheckbox.disabled = "";
             elems.countTimeSelect.onchange();
             break;
@@ -285,6 +297,7 @@ elems.playerSelect.onchange = ()=>{
             elems.mapElem.classList.add("hunter");
             elems.countTimeSelect.disabled = "";
             elems.cameraOnCheckbox.disabled = "";
+            elems.consoleOnCheckbox.disabled = "";
             elems.othreSvShowOnCheckbox.disabled = "disabled";
             elems.countTimeSelect.onchange();
     }
