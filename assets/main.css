@@ -95,6 +95,7 @@ body{
 
 .answer_h,
 .answer_camera,
+.answer_console,
 .answer_s,
 .expected_h,
 .expected_s{
@@ -129,7 +130,13 @@ body{
     background-color: rgba(206,84,156,0.5);
     z-index: -1;
 }
-.hunter .answer_camera.answerd{
+.hunter .answer_console{
+    display:none;
+    background-color: rgba(255,165,0,0.5);
+    z-index: -1;
+}
+.hunter .answer_camera.answerd,
+.hunter .answer_console.answerd{
     display: block;
 }
 /* survivor版のスポーン */
