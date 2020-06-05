@@ -167,7 +167,8 @@ body{
 .survivor .answer_s.other.answerd{
     display: none;
 }
-.survivor .answer_camera{
+.survivor .answer_camera,
+.survivor .answer_console{
     display:none;
 }
 /* 社交恐怖 */
