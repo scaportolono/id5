@@ -1,6 +1,10 @@
 # IdentityV スポーン位置覚え丸
 スポーンパターンをサバイバー、ハンター視点で覚えたりするためのWebアプリです。
 
+メンテナンスは現在しておりません。
+要望ありましたら [Issue](https://github.com/scaportolono/id5/issues/new) または 変更をPRください。
+時間が取れたら対応します。
+
 # Requirement
 
 - Node.js v14 (14.3.0)
